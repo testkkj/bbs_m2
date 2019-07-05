@@ -2,8 +2,10 @@ package com.springbook.ioc.injection;
 
 import java.util.List;
 
-import org.springframework.context.support.*;
-import com.springbook.ioc.injection.*;
+import org.springframework.context.support.AbstractApplicationContext;
+import org.springframework.context.support.GenericXmlApplicationContext;
+
+import com.springbook.ioc.injection.CollectionBean;
 
 public class CollectionBeanClient {
 	public static void main(String[] args) {
