@@ -3,6 +3,8 @@ package com.springbook.biz.board.impl;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
@@ -16,14 +18,14 @@ public class BoardDAO {
 	private Connection conn = null;
 	private PreparedStatement stmt = null;
 	private ResultSet rs = null;
-	
+
 	// SQL 명령어들
 	private final String BOARD_INSERT = "insert into board(seq, title, writer, content) values((select nvl(max(seq), 0)+1 from board),?,?,?)";
 	private final String BOARD_UPDATE = "update board set title = ?, content = ? where seq = ?";
 	private final String BOARD_DELETE = "delete board where seq = ?";
 	private final String BOARD_GET = "select * from board where seq = ?";
 	private final String BOARD_LIST = "select * from board order by seq desc";
-	
+
 	// CRUD 기능의 메소드 구현
 	// 글 등록
 	public void insertBoard(BoardVO vo) {
@@ -36,11 +38,11 @@ public class BoardDAO {
 			stmt.setString(3, vo.getContent());
 		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			JDBCUtil.close(stmt, conn);
 		}
 	}
-	
+
 	// 글 수정
 	public void updateBoard(BoardVO vo) {
 		System.out.println("===> JDBC로 updateBoard() 기능 처리");
@@ -53,7 +55,7 @@ public class BoardDAO {
 			stmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			JDBCUtil.close(stmt, conn);
 		}
 	}
@@ -68,7 +70,7 @@ public class BoardDAO {
 			stmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			JDBCUtil.close(stmt, conn);
 		}
 	}
@@ -86,10 +88,36 @@ public class BoardDAO {
 			stmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			JDBCUtil.close(stmt, conn);
 		}
 		return board;
+	}
+
+	// 글 목록 조회
+	public List<BoardVO> getBoardList(BoardVO vo) {
+		System.out.println("===> JDBC로 getBoardList() 기능 처리");
+		List<BoardVO> boardList = new ArrayList<BoardVO>();
+		try {
+			conn = JDBCUtil.getConnection();
+			stmt = conn.prepareStatement(BOARD_LIST);
+			rs = stmt.executeQuery();
+			while (rs.next()) {
+				BoardVO board = new BoardVO();
+				board.setSeq(rs.getInt("SEQ"));
+				board.setTitle(rs.getString("TITLE"));
+				board.setWriter(rs.getString("WRITER"));
+				board.setContent(rs.getString("CONTENT"));
+				board.setRegDate(rs.getDate("REGDATE"));
+				board.setCnt(rs.getInt("CNT"));
+				boardList.add(board);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JDBCUtil.close(rs, stmt, conn);
+		}
+		return boardList;
 	}
 
 }
