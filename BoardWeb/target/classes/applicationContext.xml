@@ -12,21 +12,6 @@
 		base-package="com.springbook.biz">
 	</context:component-scan>
 
-	<bean id="afterThrowing" class="com.springbook.biz.common.AfterThrowingAdvice"></bean>
-
-	<aop:config>
-		<aop:pointcut
-			expression="execution(* com.spring.biz..*Impl.*(..))"
-			id="allPointcut" />
-
-		<aop:aspect ref="afterThrowing">
-			<aop:after-returning method="exceptionLog"
-				pointcut-ref="allPointcut" />
-		</aop:aspect>
-	</aop:config>
-
-	<!-- <bean id="userService" class="com.springbook.biz.user.impl.UserServiceimpl"> 
-		<property name="userDAO" ref="userDAO"></property> </bean> <bean id="userDAO" 
-		class="com.springbook.biz.user.impl.UserDAO"></bean> -->
+	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 
 </beans>
