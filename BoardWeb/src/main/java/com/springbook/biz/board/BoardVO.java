@@ -9,6 +9,24 @@ public class BoardVO {
 	private String content;
 	private Date regDate;
 	private int cnt;
+	private String serchCondition;
+	private String serchKeyword;
+
+	public String getSerchCondition() {
+		return serchCondition;
+	}
+
+	public void setSerchCondition(String serchCondition) {
+		this.serchCondition = serchCondition;
+	}
+
+	public String getSerchKeyword() {
+		return serchKeyword;
+	}
+
+	public void setSerchKeyword(String serchKeyword) {
+		this.serchKeyword = serchKeyword;
+	}
 
 	@Override
 	public String toString() {
