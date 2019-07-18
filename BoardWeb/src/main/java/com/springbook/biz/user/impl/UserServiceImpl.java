@@ -7,7 +7,7 @@ import com.springbook.biz.user.UserService;
 import com.springbook.biz.user.UserVO;
 
 @Service("userService")
-public class UserServiceimpl implements UserService {
+public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserDAO userDAO;
 

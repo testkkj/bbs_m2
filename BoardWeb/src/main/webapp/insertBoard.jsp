@@ -9,9 +9,9 @@
 <body>
 	<center>
 		<h1>글 등록</h1>
-		<a href="logout_proc.do">Log-out</a>
+		<a href="logout.do">Log-out</a>
 		<hr>
-		<form action="insertBoard_proc.jsp" method="post"
+		<form action="insertBoard.do" method="post"
 			enctype="multipart/form-data">
 			<table border="1" cellpadding="0" cellspacing="0">
 				<tr>
@@ -37,7 +37,7 @@
 			</table>
 		</form>
 		<hr>
-		<a href="getBoard.jsp">글 목록 가기</a>
+		<a href="getBoardList.do">글 목록 가기</a>
 	</center>
 </body>
 </html>

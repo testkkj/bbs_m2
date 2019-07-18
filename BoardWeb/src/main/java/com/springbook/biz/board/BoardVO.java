@@ -22,9 +22,9 @@ public class BoardVO {
 	private Date regDate;
 	private int cnt;
 	@XmlTransient
-	private String serchCondition;
+	private String searchCondition;
 	@XmlTransient
-	private String serchKeyword;
+	private String searchKeyword;
 	@XmlTransient
 	private MultipartFile uploadFile;
 
@@ -77,21 +77,21 @@ public class BoardVO {
 	}
 
 	@JsonIgnore
-	public String getSerchCondition() {
-		return serchCondition;
+	public String getSearchCondition() {
+		return searchCondition;
 	}
 
-	public void setSerchCondition(String serchCondition) {
-		this.serchCondition = serchCondition;
+	public void setSearchCondition(String serchCondition) {
+		this.searchCondition = serchCondition;
 	}
 
 	@JsonIgnore
-	public String getSerchKeyword() {
-		return serchKeyword;
+	public String getSearchKeyword() {
+		return searchKeyword;
 	}
 
-	public void setSerchKeyword(String serchKeyword) {
-		this.serchKeyword = serchKeyword;
+	public void setSearchKeyword(String serchKeyword) {
+		this.searchKeyword = serchKeyword;
 	}
 
 	@JsonIgnore
@@ -106,7 +106,7 @@ public class BoardVO {
 	@Override
 	public String toString() {
 		return "BoardVO [seq=" + seq + ", title=" + title + ", writer=" + writer + ", content=" + content + ", regDate="
-				+ regDate + ", cnt=" + cnt + ", serchCondition=" + serchCondition + ", serchKeyword=" + serchKeyword
+				+ regDate + ", cnt=" + cnt + ", searchCondition=" + searchCondition + ", searchKeyword=" + searchKeyword
 				+ ", uploadFile=" + uploadFile + "]";
 	}
 

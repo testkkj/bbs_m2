@@ -28,8 +28,8 @@ public class BoardController {
 	@RequestMapping("/dataTransform.do")
 	@ResponseBody
 	public BoardListVO dataTransform(BoardVO vo) {
-		vo.setSerchCondition("TITLE");
-		vo.setSerchKeyword("");
+		vo.setSearchCondition("TITLE");
+		vo.setSearchKeyword("");
 		List<BoardVO> boardList = boardService.getBoardList(vo);
 		BoardListVO boardListVO = new BoardListVO();
 		boardListVO.setBoardList(boardList);
@@ -84,11 +84,11 @@ public class BoardController {
 	@RequestMapping("/getBoardList.do")
 	public String getBoardList(BoardVO vo, Model model) {
 		// Null Check
-		if (vo.getSerchCondition() == null) {
-			vo.setSerchCondition("TITLE");
+		if (vo.getSearchCondition() == null) {
+			vo.setSearchCondition("TITLE");
 		}
-		if (vo.getSerchKeyword() == null) {
-			vo.setSerchKeyword("");
+		if (vo.getSearchKeyword() == null) {
+			vo.setSearchKeyword("");
 		}
 		// Model 정보 저장
 		model.addAttribute("boardList", boardService.getBoardList(vo));

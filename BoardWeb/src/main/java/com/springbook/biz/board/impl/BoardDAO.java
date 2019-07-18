@@ -84,10 +84,17 @@ public class BoardDAO {
 		try {
 			conn = JDBCUtil.getConnection();
 			stmt = conn.prepareStatement(BOARD_GET);
-			stmt.setString(1, vo.getTitle());
-			stmt.setString(2, vo.getContent());
-			stmt.setInt(3, vo.getSeq());
-			stmt.executeUpdate();
+			stmt.setInt(1, vo.getSeq());
+			rs = stmt.executeQuery();
+			if (rs.next()) {
+				board = new BoardVO();
+				board.setSeq(rs.getInt("SEQ"));
+				board.setTitle(rs.getString("TITLE"));
+				board.setWriter(rs.getString("WRITER"));
+				board.setContent(rs.getString("CONTENT"));
+				board.setRegDate(rs.getDate("REGDATE"));
+				board.setCnt(rs.getInt("CNT"));
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -102,12 +109,12 @@ public class BoardDAO {
 		List<BoardVO> boardList = new ArrayList<BoardVO>();
 		try {
 			conn = JDBCUtil.getConnection();
-			if (vo.getSerchCondition().equals("TITTLE")) {
+			if (vo.getSearchCondition().equals("TITLE")) {
 				stmt = conn.prepareStatement(BOARD_LIST_T);
-			} else if (vo.getSerchCondition().equals("CONTENT")) {
+			} else if (vo.getSearchCondition().equals("CONTENT")) {
 				stmt = conn.prepareStatement(BOARD_LIST_C);
 			}
-			stmt.setString(1, vo.getSerchKeyword());
+			stmt.setString(1, vo.getSearchKeyword());
 			rs = stmt.executeQuery();
 			while (rs.next()) {
 				BoardVO board = new BoardVO();

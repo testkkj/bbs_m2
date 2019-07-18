@@ -27,7 +27,7 @@
 				</tr>
 				<tr>
 					<td bgcolor="orange">내용</td>
-					<td align="left"><textarea rows="10" cols="40" name="content"></textarea>${board.content }</td>
+					<td align="left"><textarea rows="10" cols="40" name="content">${board.content }</textarea></td>
 				</tr>
 				<tr>
 					<td bgcolor="orange">등록일</td>

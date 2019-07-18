@@ -59,10 +59,10 @@ public class BoardDAOSpring {
 	// 글 목록 조회
 	public List<BoardVO> getBoardList(BoardVO vo) {
 		System.out.println("===> Spring JDBC로 getBoardList() 기능 처리");
-		Object[] args = { vo.getSerchKeyword() };
-		if (vo.getSerchCondition().equals("TITLE")) {
+		Object[] args = { vo.getSearchKeyword() };
+		if (vo.getSearchCondition().equals("TITLE")) {
 			return jdbcTemplate.query(BOARD_LIST_T, args, new BoardRowMapper());
-		} else if (vo.getSerchCondition().equals("CONTENT")) {
+		} else if (vo.getSearchCondition().equals("CONTENT")) {
 			return jdbcTemplate.query(BOARD_LIST_C, new BoardRowMapper());
 		}
 		return null;
